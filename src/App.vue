@@ -16,7 +16,7 @@
       </template>
     </v-app-bar>
 
-    <v-main>
+    <v-main scrollable>
       <router-view />
     </v-main>
   </v-app>

@@ -21,9 +21,9 @@ export const useSearchStore = defineStore('search', () => {
     const params = {}
     if (filters.value.platform)    params.platform    = filters.value.platform
     if (filters.value.country)     params.country     = filters.value.country
-    if (filters.value.audioLang)   params.audioLang   = filters.value.audioLang
-    if (filters.value.subtitleLang) params.subtitleLang = filters.value.subtitleLang
-    if (filters.value.showType)    params.showType    = filters.value.showType
+    if (filters.value.audioLang)    params.audio    = filters.value.audioLang
+    if (filters.value.subtitleLang) params.subtitle = filters.value.subtitleLang
+    if (filters.value.showType)    params.type        = filters.value.showType
 
     loading.value = true
     error.value = null

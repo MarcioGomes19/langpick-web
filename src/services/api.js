@@ -53,6 +53,9 @@ export const titleService = {
   getById(id) {
     return api.get(`/titles/${id}`)
   },
+  getFetchStatus(platform, country) {
+    return api.get('/titles/fetch-status', { params: { platform, country } })
+  },
 }
 
 export const authService = {
