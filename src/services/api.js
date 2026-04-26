@@ -35,6 +35,31 @@ export const LANGUAGES = [
   { code: 'ara', label: 'Árabe' },
 ]
 
+// Géneros com nomes em português
+export const GENRES = [
+  { id: 'action',      label: 'Ação' },
+  { id: 'adventure',   label: 'Aventura' },
+  { id: 'animation',   label: 'Animação' },
+  { id: 'comedy',      label: 'Comédia' },
+  { id: 'crime',       label: 'Crime' },
+  { id: 'documentary', label: 'Documentário' },
+  { id: 'drama',       label: 'Drama' },
+  { id: 'family',      label: 'Família' },
+  { id: 'fantasy',     label: 'Fantasia' },
+  { id: 'history',     label: 'História' },
+  { id: 'horror',      label: 'Terror' },
+  { id: 'music',       label: 'Música' },
+  { id: 'mystery',     label: 'Mistério' },
+  { id: 'news',        label: 'Notícias' },
+  { id: 'reality',     label: 'Reality Show' },
+  { id: 'romance',     label: 'Romance' },
+  { id: 'scifi',       label: 'Ficção Científica' },
+  { id: 'talk',        label: 'Talk Show' },
+  { id: 'thriller',    label: 'Thriller' },
+  { id: 'war',         label: 'Guerra' },
+  { id: 'western',     label: 'Faroeste' },
+]
+
 export const COUNTRIES = [
   { code: 'br', label: 'Brasil' },
   { code: 'pt', label: 'Portugal' },

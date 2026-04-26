@@ -75,6 +75,21 @@
           clearable
         />
       </v-col>
+
+      <!-- Género -->
+      <v-col cols="12" sm="6" md="3">
+        <v-select
+          v-model="store.filters.genre"
+          :items="genres"
+          item-title="label"
+          item-value="id"
+          label="Género"
+          prepend-inner-icon="mdi-drama-masks"
+          variant="outlined"
+          density="compact"
+          clearable
+        />
+      </v-col>
     </v-row>
 
     <div class="d-flex justify-end ga-2 mt-1">
@@ -98,7 +113,7 @@
 </template>
 
 <script setup>
-import { PLATFORMS, LANGUAGES, COUNTRIES } from '../services/api'
+import { PLATFORMS, LANGUAGES, COUNTRIES, GENRES } from '../services/api'
 import { useSearchStore } from '../stores/search'
 
 const store = useSearchStore()
@@ -106,6 +121,7 @@ const store = useSearchStore()
 const platforms = PLATFORMS
 const languages = LANGUAGES
 const countries = COUNTRIES
+const genres = GENRES
 const showTypes = [
   { label: 'Filmes', value: 'movie' },
   { label: 'Séries', value: 'series' },

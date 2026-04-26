@@ -64,13 +64,25 @@
           +{{ title.subtitleLanguages.length - 4 }}
         </v-chip>
       </div>
+      <!-- Géneros -->
+      <div v-if="title.genres?.length" class="mt-1 d-flex flex-wrap ga-1">
+        <v-chip
+          v-for="g in title.genres.slice(0, 3)"
+          :key="g"
+          size="x-small"
+          variant="outlined"
+          color="grey"
+        >
+          {{ genreLabel(g) }}
+        </v-chip>
+      </div>
     </v-card-text>
   </v-card>
 </template>
 
 <script setup>
 import { computed } from 'vue'
-import { PLATFORMS } from '../services/api'
+import { PLATFORMS, GENRES } from '../services/api'
 import LanguageBadge from './LanguageBadge.vue'
 
 const props = defineProps({
@@ -80,6 +92,10 @@ const props = defineProps({
 const platformColor = computed(() => {
   return PLATFORMS.find(p => p.id === props.title.platform)?.color || '#888'
 })
+
+function genreLabel(id) {
+  return GENRES.find(g => g.id === id)?.label || id
+}
 </script>
 
 <style scoped>

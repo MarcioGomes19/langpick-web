@@ -15,6 +15,7 @@ export const useSearchStore = defineStore('search', () => {
     audioLang: null,
     subtitleLang: null,
     showType: null,
+    genre: null,
   })
 
   async function search() {
@@ -24,6 +25,7 @@ export const useSearchStore = defineStore('search', () => {
     if (filters.value.audioLang)    params.audio    = filters.value.audioLang
     if (filters.value.subtitleLang) params.subtitle = filters.value.subtitleLang
     if (filters.value.showType)    params.type        = filters.value.showType
+    if (filters.value.genre)       params.genre       = filters.value.genre
 
     loading.value = true
     error.value = null
