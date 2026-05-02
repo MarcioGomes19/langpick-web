@@ -1,7 +1,12 @@
 import axios from 'axios'
 
+// Em produção usa VITE_API_URL; em dev usa proxy Vite (/api → localhost:8080)
+const baseURL = import.meta.env.VITE_API_URL
+  ? `${import.meta.env.VITE_API_URL}/api`
+  : '/api'
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL,
   timeout: 15000,
 })
 
@@ -16,9 +21,8 @@ api.interceptors.request.use((config) => {
 export const PLATFORMS = [
   { id: 'netflix',  label: 'Netflix',       color: '#E50914' },
   { id: 'disney',   label: 'Disney+',        color: '#0063E5' },
-  { id: 'prime',    label: 'Amazon Prime',   color: '#00A8E1' },
-  { id: 'apple',    label: 'Apple TV+',      color: '#555555' },
   { id: 'hbo',      label: 'Max (HBO)',       color: '#002BE7' },
+  { id: 'prime',    label: 'Amazon Prime',   color: '#00A8E1' },
 ]
 
 // Idiomas mais usados com código ISO 639-3
@@ -62,13 +66,7 @@ export const GENRES = [
 
 export const COUNTRIES = [
   { code: 'br', label: 'Brasil' },
-  { code: 'pt', label: 'Portugal' },
   { code: 'us', label: 'Estados Unidos' },
-  { code: 'gb', label: 'Reino Unido' },
-  { code: 'es', label: 'Espanha' },
-  { code: 'fr', label: 'França' },
-  { code: 'de', label: 'Alemanha' },
-  { code: 'jp', label: 'Japão' },
 ]
 
 export const titleService = {

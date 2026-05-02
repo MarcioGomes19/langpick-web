@@ -56,7 +56,7 @@
       <v-row>
         <!-- Info principal -->
         <v-col cols="12" md="8">
-          <v-card flat rounded="lg" class="mb-4 pa-4" color="surface-variant">
+          <v-card flat rounded="lg" class="mb-4 pa-4" color="white" border>
             <h2 class="text-h6 font-weight-bold mb-2">Sinopse</h2>
             <p class="text-body-1">{{ title.overview || 'Sem descrição disponível.' }}</p>
           </v-card>
@@ -64,7 +64,7 @@
 
         <!-- Idiomas -->
         <v-col cols="12" md="4">
-          <v-card flat rounded="lg" class="pa-4 mb-4" color="surface-variant">
+          <v-card flat rounded="lg" class="pa-4 mb-4" color="white" border>
             <h2 class="text-h6 font-weight-bold mb-3">🔊 Áudio disponível</h2>
             <div v-if="title.audioLanguages?.length" class="d-flex flex-wrap">
               <language-badge

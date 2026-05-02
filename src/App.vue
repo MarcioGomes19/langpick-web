@@ -1,16 +1,18 @@
 <template>
   <v-app :theme="theme">
-    <v-app-bar color="primary" flat>
-      <v-app-bar-title>
-        <router-link to="/" class="text-white text-decoration-none font-weight-bold text-h6">
-          🎬 LangPick
-        </router-link>
-      </v-app-bar-title>
+    <v-app-bar color="white" elevation="1" border="b">
+      <template #prepend>
+        <v-app-bar-title>
+          <router-link to="/" class="text-decoration-none font-weight-bold text-h6 d-flex align-center ga-2" style="color: #1565C0">
+            🎬 LangPick
+          </router-link>
+        </v-app-bar-title>
+      </template>
       <template #append>
         <v-btn :icon="theme === 'dark' ? 'mdi-weather-sunny' : 'mdi-weather-night'" @click="toggleTheme" />
         <v-btn v-if="!authStore.isLoggedIn" to="/auth" icon="mdi-login" />
         <template v-else>
-          <v-btn to="/favorites" icon="mdi-heart" />
+          <v-btn to="/favorites" icon="mdi-heart" color="red" />
           <v-btn icon="mdi-logout" @click="authStore.logout" />
         </template>
       </template>

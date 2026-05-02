@@ -9,7 +9,7 @@
       :src="title.posterUrl || '/placeholder.png'"
       height="220"
       cover
-      class="bg-grey-darken-3"
+      class="bg-grey-lighten-3"
     >
       <template #placeholder>
         <div class="d-flex align-center justify-center fill-height">
@@ -26,6 +26,14 @@
         </v-chip>
         <v-chip v-if="title.contentType" size="x-small" color="black" variant="tonal">
           {{ title.contentType === 'movie' ? 'Filme' : 'Série' }}
+        </v-chip>
+        <v-chip
+          v-if="title.ageRating || title.ageRatingMin != null"
+          size="x-small"
+          :color="ageRatingColor"
+          class="font-weight-bold"
+        >
+          {{ ageRatingLabel }}
         </v-chip>
       </div>
     </v-img>
@@ -93,6 +101,21 @@ const platformColor = computed(() => {
   return PLATFORMS.find(p => p.id === props.title.platform)?.color || '#888'
 })
 
+const ageRatingColor = computed(() => {
+  const min = props.title.ageRatingMin ?? 18
+  if (min === 0) return 'green'
+  if (min <= 7)  return 'green'
+  if (min <= 12) return 'amber'
+  if (min <= 16) return 'orange'
+  return 'red'
+})
+
+const ageRatingLabel = computed(() => {
+  if (props.title.ageRatingMin == null) return '18+'
+  if (props.title.ageRatingMin === 0) return 'Livre'
+  return `${props.title.ageRatingMin}+`
+})
+
 function genreLabel(id) {
   return GENRES.find(g => g.id === id)?.label || id
 }
@@ -102,12 +125,14 @@ function genreLabel(id) {
 .title-card {
   transition: transform 0.2s, box-shadow 0.2s;
   cursor: pointer;
+  border: 1px solid #E3EAF2 !important;
 }
 .title-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0,0,0,0.2) !important;
+  box-shadow: 0 8px 28px rgba(21, 101, 192, 0.15) !important;
+  border-color: #90CAF9 !important;
 }
 .card-overlay {
-  background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, transparent 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, transparent 100%);
 }
 </style>
