@@ -10,7 +10,7 @@
     <div class="detail-hero" :style="heroStyle">
       <div class="hero-overlay d-flex align-end pa-6">
         <v-img
-          :src="title.posterUrl || '/placeholder.png'"
+          :src="resolvePoster(title.posterUrl)"
           max-width="160"
           rounded="lg"
           elevation="8"
@@ -113,13 +113,21 @@ const loading = ref(true)
 const error = ref(null)
 const favoriteLoading = ref(false)
 
+const API_BASE = import.meta.env.VITE_API_URL || ''
+
+function resolvePoster(url) {
+  if (!url) return '/placeholder.png'
+  if (url.startsWith('http')) return url
+  return `${API_BASE}${url}`
+}
+
 const platformColor = computed(() => {
   return PLATFORMS.find(p => p.id === title.value?.platform)?.color || '#888'
 })
 
 const heroStyle = computed(() => ({
   background: title.value?.posterUrl
-    ? `linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 100%), url(${title.value.posterUrl}) center/cover`
+    ? `linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 100%), url(${resolvePoster(title.value.posterUrl)}) center/cover`
     : 'linear-gradient(135deg, #6750A4, #21005D)',
   minHeight: '320px',
 }))

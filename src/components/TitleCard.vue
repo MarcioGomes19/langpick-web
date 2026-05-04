@@ -6,7 +6,7 @@
     rounded="lg"
   >
     <v-img
-      :src="title.posterUrl || '/placeholder.png'"
+      :src="posterSrc"
       height="220"
       cover
       class="bg-grey-lighten-3"
@@ -95,6 +95,15 @@ import LanguageBadge from './LanguageBadge.vue'
 
 const props = defineProps({
   title: { type: Object, required: true }
+})
+
+const API_BASE = import.meta.env.VITE_API_URL || ''
+
+const posterSrc = computed(() => {
+  const url = props.title.posterUrl
+  if (!url) return '/placeholder.png'
+  if (url.startsWith('http')) return url
+  return `${API_BASE}${url}`
 })
 
 const platformColor = computed(() => {
