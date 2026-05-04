@@ -43,6 +43,7 @@ export const useSearchStore = defineStore('search', () => {
   }
 
   async function search() {
+    if (!filters.value.country) return
     loading.value = true
     error.value = null
     page.value = 0

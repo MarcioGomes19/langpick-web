@@ -10,22 +10,24 @@
       density="compact"
       clearable
       class="mb-3"
-      @keyup.enter="store.search()"
+      @keyup.enter="handleSearch"
     />
 
     <v-row dense>
-      <!-- País -->
+      <!-- País (obrigatório) -->
       <v-col cols="12" sm="6" md="3">
         <v-select
           v-model="store.filters.country"
           :items="countries"
           item-title="label"
           item-value="code"
-          label="País"
+          label="País *"
           prepend-inner-icon="mdi-earth"
           variant="outlined"
           density="compact"
-          clearable
+          :rules="[v => !!v || 'País obrigatório']"
+          :error="!store.filters.country && countryTouched"
+          :error-messages="!store.filters.country && countryTouched ? 'Seleciona um país para pesquisar' : ''"
         />
       </v-col>
 
@@ -156,7 +158,7 @@
     <div class="d-flex justify-end ga-2 mt-1">
       <v-btn
         variant="text"
-        @click="store.reset(); store.filters.country = 'br'"
+        @click="store.reset(); store.filters.country = 'br'; countryTouched = false"
         :disabled="store.loading"
       >
         Limpar
@@ -164,7 +166,7 @@
       <v-btn
         color="primary"
         prepend-icon="mdi-magnify"
-        @click="store.search()"
+        @click="handleSearch"
         :loading="store.loading"
       >
         Pesquisar
@@ -174,10 +176,18 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { PLATFORMS, LANGUAGES, COUNTRIES, GENRES } from '../services/api'
 import { useSearchStore } from '../stores/search'
 
 const store = useSearchStore()
+const countryTouched = ref(false)
+
+function handleSearch() {
+  countryTouched.value = true
+  if (!store.filters.country) return
+  store.search()
+}
 
 const platforms = PLATFORMS
 const languages = LANGUAGES
