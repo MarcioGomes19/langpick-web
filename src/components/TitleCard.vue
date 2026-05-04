@@ -48,6 +48,20 @@
     <v-card-title class="text-body-1 font-weight-bold pt-3 pb-1" style="line-height:1.3">
       {{ title.title }}
     </v-card-title>
+
+    <!-- Plataforma logo + nome, abaixo do título -->
+    <div class="d-flex align-center px-4 pb-1 ga-1">
+      <img
+        v-if="platformLogo"
+        :src="platformLogo"
+        :alt="platformLabel"
+        class="platform-logo-inline"
+      />
+      <span class="text-caption font-weight-medium" :style="{ color: platformColor }">
+        {{ platformLabel }}
+      </span>
+    </div>
+
     <v-card-subtitle v-if="title.releaseYear" class="pb-1">
       {{ title.releaseYear }}
     </v-card-subtitle>
@@ -157,6 +171,12 @@ function genreLabel(id) {
   height: 14px;
   object-fit: contain;
   filter: brightness(0) invert(1);
+  vertical-align: middle;
+}
+.platform-logo-inline {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
   vertical-align: middle;
 }
 .platform-chip {
