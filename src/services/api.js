@@ -19,10 +19,11 @@ api.interceptors.request.use((config) => {
 
 // Catálogo de plataformas suportadas (hardcoded para UI)
 export const PLATFORMS = [
-  { id: 'netflix',  label: 'Netflix',       color: '#E50914' },
-  { id: 'disney',   label: 'Disney+',        color: '#0063E5' },
-  { id: 'hbo',      label: 'Max (HBO)',       color: '#002BE7' },
-  { id: 'prime',    label: 'Amazon Prime',   color: '#00A8E1' },
+  { id: 'netflix',  label: 'Netflix',       color: '#E50914', logo: '/platforms/netflix.svg'  },
+  { id: 'disney',   label: 'Disney+',        color: '#0063E5', logo: '/platforms/disney.svg'   },
+  { id: 'hbo',      label: 'Max (HBO)',       color: '#6200EE', logo: '/platforms/hbo.svg'      },
+  { id: 'prime',    label: 'Amazon Prime',   color: '#00A8E1', logo: '/platforms/prime.svg'    },
+  { id: 'apple',    label: 'Apple TV+',      color: '#555555', logo: '/platforms/apple.svg'    },
 ]
 
 // Idiomas mais usados com código ISO 639-3

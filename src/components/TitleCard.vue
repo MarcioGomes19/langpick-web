@@ -16,13 +16,20 @@
           <v-icon size="64" color="grey">mdi-movie-outline</v-icon>
         </div>
       </template>
-      <div class="card-overlay pa-2 d-flex flex-wrap ga-1">
+      <div class="card-overlay pa-2 d-flex flex-wrap ga-1 align-center">
+        <!-- Logo + nome da plataforma -->
         <v-chip
           size="x-small"
           :color="platformColor"
-          class="font-weight-bold"
+          class="font-weight-bold platform-chip"
         >
-          {{ title.platform?.toUpperCase() }}
+          <img
+            v-if="platformLogo"
+            :src="platformLogo"
+            :alt="title.platform"
+            class="platform-logo mr-1"
+          />
+          {{ platformLabel }}
         </v-chip>
         <v-chip v-if="title.contentType" size="x-small" color="black" variant="tonal">
           {{ title.contentType === 'movie' ? 'Filme' : 'Série' }}
@@ -106,9 +113,10 @@ const posterSrc = computed(() => {
   return `${API_BASE}${url}`
 })
 
-const platformColor = computed(() => {
-  return PLATFORMS.find(p => p.id === props.title.platform)?.color || '#888'
-})
+const platformData = computed(() => PLATFORMS.find(p => p.id === props.title.platform))
+const platformColor = computed(() => platformData.value?.color || '#888')
+const platformLogo  = computed(() => platformData.value?.logo  || null)
+const platformLabel = computed(() => platformData.value?.label || props.title.platform?.toUpperCase() || '')
 
 const ageRatingColor = computed(() => {
   const min = props.title.ageRatingMin ?? 18
@@ -143,5 +151,15 @@ function genreLabel(id) {
 }
 .card-overlay {
   background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, transparent 100%);
+}
+.platform-logo {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  vertical-align: middle;
+}
+.platform-chip {
+  backdrop-filter: blur(4px);
 }
 </style>
