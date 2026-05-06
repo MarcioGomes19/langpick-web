@@ -16,7 +16,7 @@ export const useSearchStore = defineStore('search', () => {
   // filtros activos
   const filters = ref({
     platform: null,
-    country: 'br',
+    country: 'us',
     audioLang: null,
     subtitleLang: null,
     showType: null,
