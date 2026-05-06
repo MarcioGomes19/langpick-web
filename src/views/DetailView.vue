@@ -58,7 +58,7 @@
         <v-col cols="12" md="8">
           <v-card flat rounded="lg" class="mb-4 pa-4" color="white" border>
             <h2 class="text-h6 font-weight-bold mb-2">Sinopse</h2>
-            <p class="text-body-1">{{ title.overview || 'Sem descrição disponível.' }}</p>
+            <p class="text-body-1">{{ title.overviewPt || title.overview || 'Sem descrição disponível.' }}</p>
           </v-card>
         </v-col>
 
