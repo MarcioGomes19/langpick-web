@@ -117,7 +117,6 @@
           prepend-inner-icon="mdi-account-child"
           variant="outlined"
           density="compact"
-          clearable
         />
       </v-col>
 
@@ -198,6 +197,7 @@ const showTypes = [
   { label: 'Séries', value: 'series' },
 ]
 const ageOptions = [
+  { label: 'Todas as faixas etárias', value: null },
   { label: 'Livre (todos os públicos)', value: 0 },
   { label: 'Até 7 anos', value: 7 },
   { label: 'Até 10 anos', value: 10 },

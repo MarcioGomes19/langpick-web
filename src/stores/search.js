@@ -35,7 +35,7 @@ export const useSearchStore = defineStore('search', () => {
     if (filters.value.subtitleLang)    params.subtitle   = filters.value.subtitleLang
     if (filters.value.showType)        params.type       = filters.value.showType
     if (filters.value.genre)           params.genre      = filters.value.genre
-    if (filters.value.maxAge != null)  params.maxAge     = filters.value.maxAge
+    if (filters.value.maxAge !== null && filters.value.maxAge !== undefined) params.maxAge = filters.value.maxAge
     if (filters.value.sortBy)          params.sortBy     = filters.value.sortBy
     if (filters.value.sortDir)         params.sortDir    = filters.value.sortDir
     if (filters.value.query?.trim())   params.query      = filters.value.query.trim()
